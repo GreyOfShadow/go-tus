@@ -92,7 +92,7 @@ func (c *Client) CreateUpload(u *Upload) (*Uploader, error) {
 	switch res.StatusCode {
 	case 201:
 		location := res.Header.Get("Location")
-
+		link := res.Header.Get("Link")
 		newURL, err := c.resolveLocationURL(location)
 		if err != nil {
 			return nil, err
@@ -102,7 +102,7 @@ func (c *Client) CreateUpload(u *Upload) (*Uploader, error) {
 			c.Config.Store.Set(u.Fingerprint, newURL.String())
 		}
 
-		return NewUploader(c, newURL.String(), u, 0), nil
+		return NewUploader(c, newURL.String(), link, u, 0), nil
 	case 412:
 		return nil, ErrVersionMismatch
 	case 413:
