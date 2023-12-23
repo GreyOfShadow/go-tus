@@ -36,6 +36,11 @@ func (u *Uploader) Url() string {
 	return u.url
 }
 
+// link returns the upload link.
+func (u *Uploader) Link() string {
+	return u.link
+}
+
 // Offset returns the current offset uploaded.
 func (u *Uploader) Offset() int64 {
 	return u.offset

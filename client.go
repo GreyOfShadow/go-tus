@@ -150,7 +150,7 @@ func (c *Client) ResumeUpload(u *Upload) (*Uploader, error) {
 		return nil, err
 	}
 
-	return NewUploader(c, url, u, offset), nil
+	return NewUploader(c, url, "", u, offset), nil
 }
 
 // CreateOrResumeUpload resumes the upload if already created or creates a new upload in the server.
